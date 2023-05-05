@@ -20,8 +20,8 @@ const client = createClient({
 function App() {
   return (
     <WagmiConfig client={client}>
-      {/* <Profile></Profile> */}
-      <MarketBot></MarketBot>
+      <Profile></Profile>
+      {/* <MarketBot></MarketBot> */}
     </WagmiConfig>
   );
 }

@@ -20,6 +20,7 @@ import { useState, useEffect } from "react";
 export const Profile = () => {
   const [cardsData, setCardsData] = useState([]);
   const [num, setNum] = useState(1);
+  const [c, setC] = useState(0);
   const [sellsData, setSellsData] = useState([]);
   const [cardsDataLimit, setCardsDataLimit] = useState([]);
   const { address, isConnected } = useAccount();
@@ -165,6 +166,7 @@ export const Profile = () => {
   });
 
   const handleGetInfo = async (id) => {
+    
     const a = await contractGame.cards(id);
     console.log(
       "%ca=>",
@@ -178,7 +180,8 @@ export const Profile = () => {
     const fn = async () => {
       const count = totalSupply?.toNumber();
       const contracts = [];
-      for (let index = 0; index < count + 1; index++) {
+      setC(count-1000)
+      for (let index = count - 1000; index < count + 1; index++) {
         const c = {
           address: "0x821561bc999ee68671ec4baf32613c974897a0df",
           abi: ABI,
@@ -250,7 +253,7 @@ export const Profile = () => {
                   ? "GUT"
                   : "USDT"}
               </div>
-              <div onClick={() => handleGetInfo(i.tokenId?.toString())}>
+              <div onClick={() => handleGetInfo(i.tokenId?.toNumber()+c)}>
                 tokenId:{i.tokenId?.toString()}
               </div>
               <div>price:{i.price?.toString() / 1e18}</div>
@@ -270,7 +273,7 @@ export const Profile = () => {
                 }}
                 key={idx}
               >
-                <div onClick={() => handleGetInfo(idx)}># {idx}</div>
+                <div onClick={() => handleGetInfo(idx+c)}># {idx+c}</div>
                 <div>star: {card[0]}</div>
               </div>
             );

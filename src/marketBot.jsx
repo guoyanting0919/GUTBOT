@@ -56,7 +56,7 @@ export const MarketBot = () => {
   }
 
   const lineNotify = (message = '您要發送的訊息') => {
-    const token = "PEF4FMYkfXOfE5oLjfdrkzy9yQlcRyiZaTWZgmU9plB";
+    const token = "cSLsCDpoMDeIn8ywmrgzPbaIDTH0ug6nHy11ZE52SSU";
     fetch(`/api/notify`, {
     method: 'POST',
     headers: {
@@ -69,6 +69,8 @@ export const MarketBot = () => {
     }).then(response => console.log(response)); 
 
   }
+
+  
   return (
     <>
       {isConnected && <div>Connected to {address}</div>};
